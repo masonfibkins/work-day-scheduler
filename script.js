@@ -2,11 +2,14 @@
 var today = moment();
 $("#currentDay").text(today.format("dddd, MMMM Do"));
 
+var currentTime = moment().hour();
+console.log(currentTime);
 
-function newTimeToSeconds () {
-    var time = moment().format('LT');
-    var seconds = time.toString();
-    console.log(seconds);
-}
-
-newTimeToSeconds();
+$(".time-block").each(function () {
+//.past
+  if (currentTime > 17){
+    $(this).removeClass("future");
+    $(this).removeClass("present");
+    $(this).addClass("past");
+    }
+})
