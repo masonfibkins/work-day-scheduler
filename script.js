@@ -10,7 +10,6 @@ console.log(currentTime);
 function timeUpdate(){
 $(".time-block").each(function () {
     var blockTime = parseInt($(this).attr("id"));
-    console.log(blockTime);
 //if the current time is greater than a block time then it will replace it with .past class
   if (currentTime > blockTime){
     $(this).removeClass("future");
@@ -30,5 +29,29 @@ $(".time-block").each(function () {
 })
 }
 
-timeUpdate(currentTime);
+function saveButton() {
+    //on click event listener
+    $(".saveBtn").on("click", function () {
+        //gets nearby values of user input 
+        var text = $(this).siblings(".description").val();
+        var time = $(this).parent().attr("id");
+        //saves user input in local storage
+        localStorage.setItem(time, text);
+    })
+}
 
+//all user inputs saved in local storage
+$("#9 .description").val(localStorage.getItem("9"));
+$("#10 .description").val(localStorage.getItem("10"));
+$("#11 .description").val(localStorage.getItem("11"));
+$("#12 .description").val(localStorage.getItem("12"));
+$("#13 .description").val(localStorage.getItem("13"));
+$("#14 .description").val(localStorage.getItem("14"));
+$("#15 .description").val(localStorage.getItem("15"));
+$("#16 .description").val(localStorage.getItem("16"));
+$("#17 .description").val(localStorage.getItem("17"));
+
+
+$(document).ready(saveButton());
+
+timeUpdate(currentTime);
