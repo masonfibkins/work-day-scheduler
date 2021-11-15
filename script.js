@@ -2,14 +2,31 @@
 var today = moment();
 $("#currentDay").text(today.format("dddd, MMMM Do"));
 
-var currentTime = moment().hour();
-console.log(currentTime);
+//updates current time for time-block arguments
+// var currentTime = moment().hour();
+// console.log(currentTime);
 
+var currentTime = 11;
+
+
+//function
 $(".time-block").each(function () {
-//.past
-  if (currentTime > 17){
+    var blockTime = parseInt($(this).attr("id"));
+    console.log(blockTime);
+//if the current time is greater than a block time then it will replace it with .past class
+  if (currentTime > blockTime){
     $(this).removeClass("future");
     $(this).removeClass("present");
     $(this).addClass("past");
+    }
+    else if(blockTime === currentTime){
+    $(this).removeClass("future");
+    $(this).addClass("present");
+    $(this).removeClass("past");
+    }
+    else{
+    $(this).addClass("future");
+    $(this).removeClass("present");
+    $(this).removeClass("past");
     }
 })
